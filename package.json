@@ -44,6 +44,8 @@
   },
   "devDependencies": {
     "@prisma/client": "^6.0.0",
+    "@types/compression": "^1.7.5",
+    "@types/connect-timeout": "^0.0.39",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.1",
     "eslint-config-prettier": "^9.1.0",
