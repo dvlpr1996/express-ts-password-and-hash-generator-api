@@ -1,19 +1,16 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
-// import notFoundErrorHandling from './middlewares/notFoundErrorHandling';
-// import globalErrorHandling from './middlewares/globalErrorHandling';
-// import rateLimitConfig from './config/rateLimitConfig';
+import notFoundErrorHandling from './middlewares/notFoundErrorHandling';
+import globalErrorHandling from './middlewares/globalErrorHandling';
+import rateLimitConfig from './config/rateLimitConfig';
 import bodyParser from 'body-parser';
 import timeout from 'connect-timeout';
 import compression from 'compression';
 import helmet from 'helmet';
 
-
-// todo :: mw => check the env file
-
 const app: Application = express();
 
 app.use(timeout('20s'));
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   if (!req.timedout) next();
 });
 
