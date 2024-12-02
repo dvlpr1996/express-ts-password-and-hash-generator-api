@@ -1,7 +1,7 @@
 {
   "name": "express-ts-password-and-hash-generator-api",
   "version": "0.1.0",
-  "main": "./dist/app.ts",
+  "main": "./src/app.ts",
   "description": "A Password And Hash Generator Rest Api Built With Express.js And Type Script",
   "repository": {
     "type": "git",

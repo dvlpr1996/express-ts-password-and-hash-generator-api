@@ -17,7 +17,11 @@ const rateLimitConfig = rateLimit({
   skipSuccessfulRequests: true, // Only count requests that result in errors
   skipFailedRequests: false, // Count failed requests, as they may indicate brute-force attempts
   handler: (req, res) => {
-    res.status(429).json({ error: 'Too many requests, please try again later.' });
+    res.status(429).json({
+      status: 429,
+      error: 'Too Many Requests',
+      message: 'Too many requests, please try again later.',
+    });
   },
 });
 

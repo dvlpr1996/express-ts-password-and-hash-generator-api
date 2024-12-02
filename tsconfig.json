@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "ES2022",
     "module": "CommonJS",
-    "rootDirs": ["src"],
     "outDir": "./dist",
     "strict": true,
     "strictNullChecks": true,
