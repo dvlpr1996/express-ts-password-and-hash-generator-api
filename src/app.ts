@@ -6,6 +6,8 @@ import bodyParser from 'body-parser';
 import timeout from 'connect-timeout';
 import compression from 'compression';
 import helmet from 'helmet';
+import passwordRouter from './routes/passwordRouter';
+import hashRouter from './routes/hashRouter';
 
 const app: Application = express();
 
@@ -15,7 +17,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(compression());
-
 app.use(helmet());
 
 app.use(
@@ -32,12 +33,15 @@ app.use(
     inflate: true,
     extended: false,
     limit: '10KB',
-    parameterLimit: 5,
+    parameterLimit: 1,
     type: 'application/x-www-form-urlencoded',
   })
 );
 
 app.use(rateLimitConfig);
+
+app.use('/api/v1', passwordRouter);
+// app.use('/api/v1', hashRouter);
 
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
   throw new Error(`The Route '${req.originalUrl}' Does Not Exists`);

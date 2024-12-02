@@ -1,7 +1,8 @@
-import express, { Request, Response } from 'express';
-import test_controller from 'src/controllers/test_controller';
+import express from 'express';
+import passwordController from '../controllers/passwordController';
+
 const passwordRouter = express.Router();
 
-passwordRouter.get('/password-test', test_controller.index);
+passwordRouter.post('/generate-password', passwordController.generatePassword);
 
 export default passwordRouter;

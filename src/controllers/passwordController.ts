@@ -1,15 +1,9 @@
 import { Request, Response } from 'express';
 import expressAsyncHandler from 'express-async-handler';
-import {
-  LOWERCASE_CHARS,
-  NUMERIC_CHARS,
-  SIMILAR_CHARS,
-  SPECIAL_CHARS,
-  UPPERCASE_CHARS,
-} from 'src/config/constant/constants';
-import { PasswordOptionType } from 'src/types/type';
-import { errorMessageBag } from 'src/utils/utils';
-import passwordOptionSchema from 'src/validation/PasswordOptionSchema';
+import passwordOptionSchema from '../validation/passwordOptionSchema';
+import { errorMessageBag } from '../utils/utils';
+import { PasswordOptionType } from '../types/type';
+import { LOWERCASE_CHARS, NUMERIC_CHARS, SIMILAR_CHARS, SPECIAL_CHARS, UPPERCASE_CHARS } from '../config/constant/constants';
 
 const passwordController = {
   generatePassword: expressAsyncHandler(async (req: Request, res: Response): Promise<void> => {
