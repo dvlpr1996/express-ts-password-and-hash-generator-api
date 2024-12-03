@@ -41,7 +41,7 @@ app.use(
 app.use(rateLimitConfig);
 
 app.use('/api/v1', passwordRouter);
-// app.use('/api/v1', hashRouter);
+app.use('/api/v1', hashRouter);
 
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
   throw new Error(`The Route '${req.originalUrl}' Does Not Exists`);

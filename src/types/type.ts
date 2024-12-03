@@ -1,4 +1,5 @@
 import { ZodIssue } from "zod";
+import { algorithms } from "../config/algorithmsConfig";
 
 export type PasswordOptionType = {
   length: number;
@@ -17,3 +18,5 @@ export interface ValidationError {
   field: string | number;
   message: string;
 }
+
+export type AlgorithmKey = keyof typeof algorithms;

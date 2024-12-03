@@ -1,7 +1,10 @@
-import express, { Request, Response } from 'express';
-import test_controller from 'src/controllers/test_controller';
+import express from 'express';
+import hashController from '../controllers/hashController';
+import limitRequestBodyKeys from '../middlewares/limitRequestBodyKeys';
+
 const hashRouter = express.Router();
 
-hashRouter.get('/hash-test', test_controller.index);
+hashRouter.use(limitRequestBodyKeys(2))
+hashRouter.post('/hash-password', hashController.generateHash);
 
 export default hashRouter;
