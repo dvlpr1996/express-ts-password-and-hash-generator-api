@@ -2,11 +2,40 @@
 
 # Express TS Password and Hash Generator API
 
-This project is a REST API built with Express.js and TypeScript that generates passwords and hashes texts.
+This project is a REST API built with **Express.js** and **TypeScript** that generates passwords and hashes texts.
 
 ## Routes
 
-(Provide details about the API routes here)
+| Method | Endpoint                | Description                         |
+|--------|-------------------------|-------------------------------------|
+| POST   | /api/v1/hash-text   | Generates a hash for the given text |
+| POST   | /api/v1/generate-password | Generates a random password         |
+
+## Request Bodies
+
+### Generate Password API  
+**Endpoint:** `POST /api/v1/generate-password`
+
+```json
+{
+  "length": 12,
+  "uppercase": true,
+  "lowercase": true,
+  "numbers": true,
+  "specialChars": true,
+  "excludeSimilar": false
+}
+```
+
+### Generate Password API  
+**Endpoint:** `POST /api/v1/hash-text`
+
+```json
+{
+  "algorithm": "sha256",
+  "text": "exampleTextToHash"
+}
+```
 
 ## Language And Tools
 

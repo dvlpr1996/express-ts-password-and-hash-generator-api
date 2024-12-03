@@ -5,6 +5,6 @@ import limitRequestBodyKeys from '../middlewares/limitRequestBodyKeys';
 const hashRouter = express.Router();
 
 hashRouter.use(limitRequestBodyKeys(2))
-hashRouter.post('/hash-password', hashController.generateHash);
+hashRouter.post('/hash-text', hashController.generateHash);
 
 export default hashRouter;
