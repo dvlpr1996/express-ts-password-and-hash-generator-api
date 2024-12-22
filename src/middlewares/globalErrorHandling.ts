@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import 'dotenv/config';
 
 const globalErrorHandling = (err: any, req: Request, res: Response, next: NextFunction) => {
   const environment = process.env.NODE_ENV;
