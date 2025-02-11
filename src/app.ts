@@ -1,6 +1,4 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
-import notFoundErrorHandling from './middlewares/notFoundErrorHandling';
-import globalErrorHandling from './middlewares/globalErrorHandling';
 import rateLimitConfig from './config/rateLimitConfig';
 import bodyParser from 'body-parser';
 import timeout from 'connect-timeout';
@@ -8,11 +6,14 @@ import compression from 'compression';
 import helmet from 'helmet';
 import passwordRouter from './routes/passwordRouter';
 import hashRouter from './routes/hashRouter';
+import globalErrorHandler from './middlewares/globalErrorHandler';
+import notFoundErrorHandler from './middlewares/notFoundErrorHandler';
+import ApiError from './errors/apiError';
 
 const app: Application = express();
 
 app.use(timeout('20s'));
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req: Request, _res: Response, next: NextFunction) => {
   if (!req.timedout) next();
 });
 
@@ -43,11 +44,11 @@ app.use(rateLimitConfig);
 app.use('/api/v1', passwordRouter);
 app.use('/api/v1', hashRouter);
 
-app.all('*', (req: Request, res: Response, next: NextFunction) => {
-  throw new Error(`The Route '${req.originalUrl}' Does Not Exists`);
+app.all('*', (req: Request, _res: Response, _next: NextFunction) => {
+  throw new ApiError(`The Route '${req.originalUrl}' Does Not Exist`, 404, [], 'NOT_FOUND');
 });
 
-app.use(notFoundErrorHandling);
-app.use(globalErrorHandling);
+app.use(notFoundErrorHandler);
+app.use(globalErrorHandler);
 
 export default app;
